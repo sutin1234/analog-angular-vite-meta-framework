@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { expect, it, describe, beforeEach } from 'vitest';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
   });
-  
+
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
@@ -29,5 +30,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Vite + Angular');
+  });
+  it('should call counter clicked', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    app.increment()
+    expect(app.count).toEqual(1)
+
   });
 });
